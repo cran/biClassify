@@ -299,11 +299,11 @@ RidgeGCV <- function(Data, Cat, Sigma, Epsilon = 1e-05) {
   
   K <- KernelMat(Data, Sigma)
   n <- nrow(K)
-  C <- diag(n) - (1/n) * matrix(rep(1, n^2), nrow = n)
-  M <- (C %*% K) %*% C
+  K <- scale(K, center = TRUE, scale = FALSE)
+  K <- scale(t(K), center = TRUE, scale = FALSE)
   Gammaseq <- seq(from = 0, to = 0.5, by = 1e-04)
   values <- sapply(Gammaseq, FUN = function(Gamma) {
-    Mat <- MASS::ginv(M %*% M + Gamma * n * (M + Epsilon * diag(n))) %*% M
+    Mat <- MASS::ginv(K %*% K + Gamma * n * (K + Epsilon * diag(n))) %*% K
     Num <- sum((YThetaTrain - Mat %*% YThetaTrain)^2)
     Denom <- (n - sum(diag(Mat)))
     return(Num/Denom)

@@ -552,7 +552,7 @@ TestCat <- KOS_Data$TestCat
 \subsection{Parameter Selection}
 This subsection details how \texttt{KOS} selects the parameters $\sigma^2$, $\gamma$, and $\lambda$. 
 
-To select the gaussian kernel parameter $\sigma^2$,is selected based on the $\{.05, .1, .2, .3,.5\}$ quantiles of the set of squared distances between the classes
+The gaussian kernel parameter $\sigma^2$, is selected based on the $\{.05, .1, .2, .3,.5\}$ quantiles of the set of squared distances between the classes
 $$
 \{\|x_{i_1}-x_{i_2}\|_2^2\,:x_{i_1} \in C_1,\,x_{i_2}\in C_2\}.
 $$
